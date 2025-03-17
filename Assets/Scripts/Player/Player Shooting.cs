@@ -4,7 +4,8 @@ public class PlayerShooter : MonoBehaviour
 {
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private float shotsPerSecond = 2f; // Corrected fire rate
-    [SerializeField] public float projectileDamage = 10f; // Default player damage
+    [SerializeField] private float projectileDamage = 10f; // Default player damage
+    [SerializeField] private float projectileSpeed;
 
     private float nextShotTime = 0f;
 
@@ -26,7 +27,9 @@ public class PlayerShooter : MonoBehaviour
         {
             // Instantiate projectile at firePoint
             Projectile newProjectile = Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            newProjectile.IsPlayer = true;
             newProjectile.SetDamage(projectileDamage); // Assign damage
+            newProjectile.SetSpeed(projectileSpeed);
         }
     }
 }

@@ -1,28 +1,40 @@
+using System;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] public GameObject projectileVfx;
 
     [SerializeField] private float timeToDie = 5f;
     [SerializeField] private float projectileSpeed = 10f;
-    [SerializeField] public GameObject projectileVfx;
 
     private float damage; // Damage is now set dynamically
     [SerializeField] private float timeToLive = 0f;
+
+    [SerializeField] public bool IsPlayer;
 
     void Update()
     {
         // Accumulate elapsed time
         timeToLive += Time.deltaTime;
 
-        // Move forward at projectileSpeed
-        transform.position += Vector3.forward * projectileSpeed * Time.deltaTime;
+        if (IsPlayer)
+        {
+            // Move forward at projectileSpeed
+            transform.position += Vector3.forward * projectileSpeed * Time.deltaTime;
+        }
+        else
+        {
+            transform.position += Vector3.back * projectileSpeed * Time.deltaTime;
+        }
+
 
         // Destroy when time exceeds timeToDie
         if (timeToLive >= timeToDie)
         {
             Destroy(gameObject);
         }
+
     }
 
     public void SetDamage(float newDamage)
@@ -68,4 +80,9 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //change projectile speed from enemy attack script
+    public void SetSpeed(float projectileSpeed)
+    {
+        this.projectileSpeed = projectileSpeed;
+    }
 }

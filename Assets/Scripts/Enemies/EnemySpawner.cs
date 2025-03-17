@@ -6,12 +6,12 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<Enemy> enemyPrefabs; // Assign enemy prefabs in Unity Inspector
+    [SerializeField] private float spawnInterval = 2f; // Time between spawns
 
     private float leftEndLimit = -6f;
     private float rightEndLimit = 7f;
 
     private bool shouldSpawnEnemies = true; // Set to true to start spawning
-    [SerializeField] private float spawnInterval = 2f; // Time between spawns
     private float spawnTimer = 0f;
 
     private void Update()
