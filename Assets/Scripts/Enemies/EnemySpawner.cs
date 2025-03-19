@@ -11,8 +11,8 @@ public class EnemySpawner : MonoBehaviour
     private float leftEndLimit = -6f;
     private float rightEndLimit = 7f;
 
-    private bool shouldSpawnEnemies = true; // Set to true to start spawning
-    private float spawnTimer = 0f;
+    [SerializeField] private bool shouldSpawnEnemies; // Set to true to start spawning
+    [SerializeField] private float spawnTimer = 0f;
 
     private void Update()
     {

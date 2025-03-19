@@ -12,7 +12,7 @@ public class BoostSpawner : MonoBehaviour
 
     [SerializeField] private List<Boost> boosts;
 
-    [SerializeField] private bool shouldSpawnBoost = true;
+    [SerializeField] private bool shouldSpawnBoost;
 
     [SerializeField] private float spawnInterval = 5f; // Time between spawns
     [SerializeField] private float spawnTimer = 0f;
@@ -34,9 +34,7 @@ public class BoostSpawner : MonoBehaviour
             {
                 SpawnBoost();
                 spawnTimer = 0f;//spawn timer
-
             }
-
         }
     }
 

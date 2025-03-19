@@ -6,13 +6,14 @@ public class EnemyAttack : MonoBehaviour
 
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private Transform spawnPoint;
+
     [SerializeField] private float shotsPerSecond = 2f; // Corrected fire rate
     [SerializeField] public float projectileDamage = 10f; // Default player damage
     [SerializeField] private float projectileSpeed;
 
-    private float nextShotTime = 0f;
-
     [SerializeField] bool isShooting;
+
+    [SerializeField] private float nextShotTime = 0f;
 
     private void Update()
     {
@@ -20,10 +21,9 @@ public class EnemyAttack : MonoBehaviour
         {
             if (isShooting)
             {
-                Shoot();
+                HandleEnemyShooting();
                 nextShotTime = Time.time + (1f / shotsPerSecond);
             }
-
         }
     }
 
@@ -38,4 +38,27 @@ public class EnemyAttack : MonoBehaviour
 
         }
     }
+
+    private void HandleEnemyShooting()
+    {
+        RaycastHit hit; // Declare a variable to store the hit information
+        Vector3 rayDirection = -transform.forward; // Change this based on enemy facing direction
+
+        if (Physics.Raycast(transform.position, -transform.forward, out hit, 50f))
+        {
+            Debug.DrawRay(transform.position, rayDirection * hit.distance, Color.green, 0.2f); // Visualize hit ray
+
+            if (hit.transform.CompareTag("Player"))
+            {
+                Debug.Log($"Enemy saw {hit.transform.name}");
+                Shoot();
+            }
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, rayDirection * 50f, Color.red, 0.2f); // Visualize no-hit ray
+        }
+    }
+
+
 }

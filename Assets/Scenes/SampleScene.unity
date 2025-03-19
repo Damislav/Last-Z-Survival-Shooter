@@ -656,6 +656,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 9162848065732188324, guid: 46c01796479b14b42ba267cda8e8e503, type: 3}
+      propertyPath: shouldSpawnEnemies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -721,6 +725,10 @@ PrefabInstance:
       propertyPath: groundTransform
       value: 
       objectReference: {fileID: 10945089}
+    - target: {fileID: 7475699686232394446, guid: 03aec1cd544872349beb5b23bc6e9486, type: 3}
+      propertyPath: shouldSpawnBoost
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
