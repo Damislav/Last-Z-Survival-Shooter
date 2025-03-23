@@ -3,18 +3,19 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float playerHealth;
+    [SerializeField] public float CurrentHealth { get; private set; }
+
     private float maxPlayerHealth = 100f;
 
     private void Start()
     {
-        playerHealth = maxPlayerHealth;
+        CurrentHealth = maxPlayerHealth;
     }
 
     public void DamagePlayer(float amount)
     {
-        playerHealth -= amount;
-        if (playerHealth <= 0)
+        CurrentHealth -= amount;
+        if (CurrentHealth <= 0)
         {
             // Trigger death (e.g., animations, sounds, etc.)
             HandleDeath();
@@ -29,5 +30,7 @@ public class PlayerHealth : MonoBehaviour
         // Destroy the player object after the death process is handled
         Destroy(gameObject);
     }
+
+
 
 }

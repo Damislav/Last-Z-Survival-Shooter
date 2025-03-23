@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -27,15 +28,29 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy()
+    public void SpawnEnemy()
     {
         if (enemyPrefabs.Count > 0)
         {
             Enemy randomEnemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
-            Vector3 spawnPosition = new Vector3(Random.Range(leftEndLimit, rightEndLimit), 1.15f, 42f);
+
+            Renderer transformRenderer = GameObject.Find("Ground").GetComponent<Renderer>();
+            float zEndDepth = transformRenderer.bounds.max.z;
+
+            Vector3 spawnPosition = new Vector3(Random.Range(leftEndLimit, rightEndLimit), 1.15f, zEndDepth);
 
             // Debug.Log(spawnPosition);
             Instantiate(randomEnemy, spawnPosition, Quaternion.identity);
         }
+    }
+    public void StopSpawnEnemy()
+    {
+        shouldSpawnEnemies = false;
+    }
+
+
+    public void CheckIfHaveSpace()
+    {
+
     }
 }

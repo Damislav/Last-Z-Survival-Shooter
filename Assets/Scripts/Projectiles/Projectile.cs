@@ -51,10 +51,8 @@ public class Projectile : MonoBehaviour
         }
         if (other.CompareTag("Boost"))
         {
-
             other.GetComponent<Boost>()?.DamageBoost(damage);
             HandleHit();
-
 
         }
         if (other.CompareTag("Enemy"))

@@ -1,7 +1,13 @@
 using UnityEngine;
 
+
 public class Boost : MonoBehaviour
 {
+    [SerializeField]
+    public enum BoostType { None, Speed, Strength, }
+
+    [SerializeField] private BoostType boostType; // ✅ Will appear in Inspectors
+
     [SerializeField] private float boostSpeed = 5f;
 
     [SerializeField] private float boostHealth;
@@ -66,18 +72,50 @@ public class Boost : MonoBehaviour
 
     public void DamageBoost(float damage)
     {
+        //damage myself
         boostHealth -= damage;
 
         //update ui
         healthUI.UpdateText(boostHealth);
 
+        //if boost health is less or equal to 0
         if (boostHealth <= 0)
         {
-            healthUI.UpdateText(boostHealth);
-            Destroy(gameObject); // Destroy Boost if health reaches zero
+            //check what type of boost it is
+            switch (boostType)
+            {
+                case BoostType.Speed:
+                    SpeedBoost();
+                    break;
 
+                case BoostType.Strength:
+                    StrengthBoost();
+                    break;
+
+                case BoostType.None:
+                    Debug.Log($"Generic boost destroyed");
+                    healthUI.UpdateText(boostHealth);
+                    Destroy(gameObject); // Destroy Boost if health reaches zero
+                    break;
+            }
         }
     }
 
+    public void SpeedBoost()
+    {
+        Debug.Log($"Give me Speed boost");
+
+        PlayerController.onChangePlayerSpeed.Invoke(boostSpeed);
+        healthUI.UpdateText(boostHealth);
+        Destroy(gameObject); // Destroy Boost if health reaches zero
+    }
+
+
+    public void StrengthBoost()
+    {
+        Debug.Log($"Give me strength boost");
+        healthUI.UpdateText(boostHealth);
+        Destroy(gameObject); // Destroy Boost if health reaches zero
+    }
 
 }

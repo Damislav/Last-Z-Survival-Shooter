@@ -7,6 +7,7 @@ public class BoostSpawner : MonoBehaviour
 {
     [SerializeField] private Transform groundTransform;
 
+
     [SerializeField] Vector3 leftSide;
     [SerializeField] Vector3 rightSide;
 
@@ -21,8 +22,8 @@ public class BoostSpawner : MonoBehaviour
     {
         groundTransform = GameObject.Find("Ground").transform;
 
-        leftSide = CalculateGroundWidthThenSplit().leftSide;
-        rightSide = CalculateGroundWidthThenSplit().rightSide;
+        (leftSide, rightSide) = CalculateGroundWidthThenSplit();
+
     }
 
     private void Update()
@@ -38,13 +39,27 @@ public class BoostSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnBoost()
+    public void SpawnBoost()
     {
+
+        (leftSide, rightSide) = CalculateGroundWidthThenSplit();
+
+        if (boosts.Count == 0)
+        {
+            Debug.LogError("No boosts assigned!");
+            return;
+        }
+
         Instantiate(boosts[Random.Range(0, boosts.Count)], leftSide, Quaternion.identity);
         Instantiate(boosts[Random.Range(0, boosts.Count)], rightSide, Quaternion.identity);
     }
 
-    (Vector3 leftSide, Vector3 rightSide) CalculateGroundWidthThenSplit()
+    public void StopSpawnBoost()
+    {
+        shouldSpawnBoost = false;
+    }
+
+    (Vector3, Vector3) CalculateGroundWidthThenSplit()
     {
         if (groundTransform == null)
         {
@@ -59,14 +74,22 @@ public class BoostSpawner : MonoBehaviour
             return (Vector3.zero, Vector3.zero);
         }
 
-        float groundWidth = groundRenderer.bounds.size.x;
-        Vector3 groundCenter = groundRenderer.bounds.center;
 
-        Vector3 leftSide = groundCenter - new Vector3(groundWidth / 4, -2f, 0);
-        Vector3 rightSide = groundCenter + new Vector3(groundWidth / 4, 2f, 0);
+        Vector3 groundCenter = groundRenderer.bounds.center; // Center position
+        float groundWidth = groundRenderer.bounds.size.x; // Total width of the ground
+        // float groundDepth = groundRenderer.bounds.size.z; // Depth of the ground
+
+        // ✅ Find the farthest Z position (away from the camera)
+        float farthestZ = groundRenderer.bounds.max.z;
+
+        // Correctly split the ground along the X-axis
+        Vector3 leftSide = groundCenter - new Vector3(groundWidth / 4, 0f, -farthestZ);
+        Vector3 rightSide = groundCenter + new Vector3(groundWidth / 4, 0f, farthestZ);
+
+        leftSide.y += 2f;
+        rightSide.y += 2f;
 
         return (leftSide, rightSide);
     }
-
 
 }

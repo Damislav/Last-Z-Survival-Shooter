@@ -46,18 +46,16 @@ public class EnemyAttack : MonoBehaviour
 
         if (Physics.Raycast(transform.position, -transform.forward, out hit, 50f))
         {
-            Debug.DrawRay(transform.position, rayDirection * hit.distance, Color.green, 0.2f); // Visualize hit ray
+            Debug.DrawRay(transform.position, rayDirection * 50f, Color.red, 0.2f); // Visualize no-hit ray
 
             if (hit.transform.CompareTag("Player"))
             {
+                Debug.DrawRay(transform.position, rayDirection * hit.distance, Color.green, 0.2f); // Visualize hit ray
                 Debug.Log($"Enemy saw {hit.transform.name}");
                 Shoot();
             }
         }
-        else
-        {
-            Debug.DrawRay(transform.position, rayDirection * 50f, Color.red, 0.2f); // Visualize no-hit ray
-        }
+
     }
 
 

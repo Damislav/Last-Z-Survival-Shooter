@@ -1,13 +1,23 @@
+using System;
 using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
+    public Action<float> onShootSpeedChanged;
+
     [SerializeField] private Projectile projectilePrefab;
-    [SerializeField] private float shotsPerSecond = 2f; // Corrected fire rate
-    [SerializeField] private float projectileDamage = 10f; // Default player damage
-    [SerializeField] private float projectileSpeed;
+
+    [SerializeField] private float defaultShotsPerSecond = 2f; // Corrected fire rate
+    [SerializeField] private float defaultProjectileDamage = 10f; // Default player damage
+    [SerializeField] private float defaultProjectileSpeed = 25f;
 
     private float nextShotTime = 0f;
+
+    private void Start()
+    {
+        //listen to speed changes
+        onShootSpeedChanged += OnShootSpeedChanged;
+    }
 
     private void Update()
     {
@@ -16,7 +26,7 @@ public class PlayerShooter : MonoBehaviour
             if (Input.GetMouseButton(0)) // Hold for auto-fire
             {
                 Shoot();
-                nextShotTime = Time.time + (1f / shotsPerSecond); // Correct fire rate
+                nextShotTime = Time.time + (1f / defaultShotsPerSecond); // Correct fire rate
             }
         }
     }
@@ -28,8 +38,14 @@ public class PlayerShooter : MonoBehaviour
             // Instantiate projectile at firePoint
             Projectile newProjectile = Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
             newProjectile.IsPlayer = true;
-            newProjectile.SetDamage(projectileDamage); // Assign damage
-            newProjectile.SetSpeed(projectileSpeed);
+            newProjectile.SetDamage(defaultProjectileDamage); // Assign damage
+            newProjectile.SetSpeed(defaultProjectileSpeed);
         }
+    }
+
+    private void OnShootSpeedChanged(float speed)
+    {
+        defaultProjectileSpeed += speed;
+        defaultProjectileSpeed += speed;
     }
 }

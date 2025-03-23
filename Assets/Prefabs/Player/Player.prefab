@@ -199,8 +199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: -4464309580534646023, guid: 4da579ac8e0de2a48a88a407a5cb671f, type: 3}
-  shotsPerSecond: 2
-  projectileDamage: 1
+  defaultShotsPerSecond: 2
+  defaultProjectileDamage: 10
+  defaultProjectileSpeed: 25
+  currentShotsPerSecond: 0
+  currentProjectileDamage: 0
+  currentProjectileSpeed: 0
 --- !u!114 &2454326528307240779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,4 +217,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c81d3d0b13a4ae468884fdac4a99c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 0
