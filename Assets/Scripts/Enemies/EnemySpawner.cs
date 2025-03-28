@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -37,10 +36,10 @@ public class EnemySpawner : MonoBehaviour
             Renderer transformRenderer = GameObject.Find("Ground").GetComponent<Renderer>();
             float zEndDepth = transformRenderer.bounds.max.z;
 
-            Vector3 spawnPosition = new Vector3(Random.Range(leftEndLimit, rightEndLimit), 1.15f, zEndDepth);
+            Vector3 spawnPosition = new Vector3(Random.Range(leftEndLimit, rightEndLimit), 0, zEndDepth);
 
             // Debug.Log(spawnPosition);
-            Instantiate(randomEnemy, spawnPosition, Quaternion.identity);
+            Instantiate(randomEnemy, spawnPosition, randomEnemy.transform.rotation);
         }
     }
     public void StopSpawnEnemy()

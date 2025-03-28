@@ -5,9 +5,12 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
-    public static Action<float> onChangePlayerSpeed;
+    public static Action<float, float> onChangePlayerSpeed;
 
-    [SerializeField] private float speed = 15f;
+    public static Action<float, float, float> onBoostActivated;
+    [SerializeField] private float normalMovementSpeed = 15f;
+    [SerializeField] private float movementSpeed;
+
 
     private float rightEnd = 6.30f;
     private float leftEnd = -6.30f;
@@ -26,8 +29,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        movementSpeed = normalMovementSpeed;
         onChangePlayerSpeed += OnChangePlayerSpeed;
     }
+
 
     void Update()
     {
@@ -44,7 +49,7 @@ public class PlayerController : MonoBehaviour
             if (touch.phase == TouchPhase.Moved)
             {
                 Vector3 move = new Vector3(touch.deltaPosition.x * 0.01f, 0, 0); // Normalize movement
-                transform.position += move * speed * Time.deltaTime;
+                transform.position += move * movementSpeed * Time.deltaTime;
             }
         }
     }
@@ -52,7 +57,7 @@ public class PlayerController : MonoBehaviour
     private void HandleKeyboardInput()
     {
         float moveInput = Input.GetAxis("Horizontal"); // -1 (left) to 1 (right)
-        transform.position += new Vector3(moveInput, 0, 0) * speed * Time.deltaTime;
+        transform.position += new Vector3(moveInput, 0, 0) * movementSpeed * Time.deltaTime;
     }
 
     private void ClampPosition()
@@ -61,9 +66,19 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
 
-    private void OnChangePlayerSpeed(float speed)
+    private void OnChangePlayerSpeed(float speedMultiplier, float duration)
     {
-        this.speed = speed; // Avoid multiplying for better control
+        movementSpeed = movementSpeed * speedMultiplier;
+        Invoke(nameof(ResetSpeed), duration);
+    }
+
+
+
+
+    // Reset to Normal Speed
+    private void ResetSpeed()
+    {
+        movementSpeed = normalMovementSpeed;
     }
 
     void OnDestroy()

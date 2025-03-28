@@ -62,14 +62,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8170123728241028412}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -8.52, y: 0, z: 41.979282}
   m_LocalScale: {x: 3, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1152432373937961274}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &1264940267561043320
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6a57bff7d51654a9b7ee891791f283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 15
+  movementSpeed: 25
   enemyHealth: 0
   maxEnemyHealth: 20
   enemyDeathVfx: {fileID: 5713421039287274058, guid: 412fa44e3ecdd42459ac9b9ae9656d8a, type: 3}
@@ -205,6 +205,7 @@ MonoBehaviour:
   projectileDamage: 10
   projectileSpeed: 35
   isShooting: 1
+  nextShotTime: 0
 --- !u!114 &-8409782719898533326
 MonoBehaviour:
   m_ObjectHideFlags: 0

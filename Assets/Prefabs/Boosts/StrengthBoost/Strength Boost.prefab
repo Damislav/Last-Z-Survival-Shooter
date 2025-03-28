@@ -188,6 +188,22 @@ PrefabInstance:
       propertyPath: boostType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -5116241779637110838, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
+      propertyPath: boostDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5116241779637110838, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
+      propertyPath: boostPlayerSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5116241779637110838, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
+      propertyPath: boostPlayerShootDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -5116241779637110838, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
+      propertyPath: boostPlayerShotsPerSecond
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 710036637288648555, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
       propertyPath: m_text
       value: 5

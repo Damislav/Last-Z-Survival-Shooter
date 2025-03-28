@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostSpawner: {fileID: 0}
   enemySpawner: {fileID: 0}
+  playerHealth: {fileID: 0}
+  playerShooter: {fileID: 0}
+  isGameOver: 1

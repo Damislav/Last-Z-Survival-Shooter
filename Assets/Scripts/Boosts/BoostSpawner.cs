@@ -7,7 +7,6 @@ public class BoostSpawner : MonoBehaviour
 {
     [SerializeField] private Transform groundTransform;
 
-
     [SerializeField] Vector3 leftSide;
     [SerializeField] Vector3 rightSide;
 

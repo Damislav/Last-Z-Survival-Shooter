@@ -50,6 +50,6 @@ MonoBehaviour:
   boosts:
   - {fileID: 2615970105550910799, guid: 78e94b2b7b79c6347ad43faf82cc1736, type: 3}
   - {fileID: 3950967398503627968, guid: 1d6538156dcd3e245a3570cd0efc55ac, type: 3}
-  shouldSpawnBoost: 1
-  spawnInterval: 2
+  shouldSpawnBoost: 0
+  spawnInterval: 7
   spawnTimer: 0

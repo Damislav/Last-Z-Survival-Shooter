@@ -13,16 +13,6 @@ public class GameManager : MonoBehaviour
     [Space]
     [SerializeField] private bool isGameOver = false;
 
-
-
-    [SerializeField] private float currentShotsPerSecond;
-    [SerializeField] private float currentProjectileDamage;
-    [SerializeField] private float currentProjectileSpeed;
-
-    private float boostTimer;
-    private float currentBoostTimer;
-
-
     private void Start()
     {
         StartGame();
@@ -42,8 +32,9 @@ public class GameManager : MonoBehaviour
         // Debug.Log("Game Started!");
 
         // Example: Start spawning enemies and boosts
-        boostSpawner?.SpawnBoost();
-        enemySpawner?.SpawnEnemy();
+
+        // boostSpawner?.SpawnBoost();
+        // enemySpawner?.SpawnEnemy();
     }
 
     private void GameOver()
@@ -59,13 +50,5 @@ public class GameManager : MonoBehaviour
         if (playerShooter != null) playerShooter.enabled = false;
     }
 
-    private void StrengthBoost()
-    {
 
-    }
-
-    public void SpeedBoost()
-    {
-
-    }
 }

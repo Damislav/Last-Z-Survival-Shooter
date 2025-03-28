@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: -91020441040440641, guid: 873e0cadd199a2c489695fd6ed131820, type: 3}
-  - {fileID: -91020441040440641, guid: 873e0cadd199a2c489695fd6ed131820, type: 3}
+  - {fileID: 1538905600380478054, guid: 793945c23f1a64a4a96370f329bdc1d6, type: 3}
+  - {fileID: 1538905600380478054, guid: 793945c23f1a64a4a96370f329bdc1d6, type: 3}
   spawnInterval: 2
+  shouldSpawnEnemies: 1
+  spawnTimer: 0

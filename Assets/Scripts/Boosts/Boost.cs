@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -6,16 +7,30 @@ public class Boost : MonoBehaviour
     [SerializeField]
     public enum BoostType { None, Speed, Strength, }
 
-    [SerializeField] private BoostType boostType; // ✅ Will appear in Inspectors
+    [SerializeField] private BoostType boostType; // ✅ Will appear in 
 
+
+    [Header("Boost Player Stats")]
+    [Space]
+    [SerializeField] private float boostPlayerSpeed = 5f;
+    [SerializeField] private float boostPlayerShootSpeed;
+    [SerializeField] private float boostPlayerShotsPerSecond = 5f;
+    [SerializeField] private float boostPlayerShootDamage;
+
+
+    [Header("Boost own stats")]
+    [Space]
     [SerializeField] private float boostSpeed = 5f;
-
     [SerializeField] private float boostHealth;
     [SerializeField] private float maxBoostHealth = 20f;
+    [SerializeField] private float boostDamage = 20f;
+    [SerializeField] private float boostDuration;
 
-    [SerializeField] float boostDamage = 20f;
-
+    [Space]
     [SerializeField] HealthUI healthUI;
+
+
+
 
     void Awake()
     {
@@ -105,7 +120,10 @@ public class Boost : MonoBehaviour
     {
         Debug.Log($"Give me Speed boost");
 
-        PlayerController.onChangePlayerSpeed.Invoke(boostSpeed);
+        PlayerController.onChangePlayerSpeed?.Invoke(boostPlayerSpeed, boostDuration);
+        PlayerShooter.onShootSpeedChanged?.Invoke(boostPlayerShootSpeed, boostDuration);
+        PlayerShooter.onShootProjectileChanged?.Invoke(boostPlayerShotsPerSecond, boostDuration);
+
         healthUI.UpdateText(boostHealth);
         Destroy(gameObject); // Destroy Boost if health reaches zero
     }
@@ -114,8 +132,11 @@ public class Boost : MonoBehaviour
     public void StrengthBoost()
     {
         Debug.Log($"Give me strength boost");
+        PlayerShooter.onShootProjectileDamageChanged?.Invoke(boostPlayerShootDamage, boostDuration);
         healthUI.UpdateText(boostHealth);
         Destroy(gameObject); // Destroy Boost if health reaches zero
     }
+
+
 
 }

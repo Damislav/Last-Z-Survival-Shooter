@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d1923f4e5f05345bee0d758f88eaf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boostType: 0
   boostSpeed: 5
   boostHealth: 0
   maxBoostHealth: 100
@@ -345,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62101ee7a60c36c419195557b58788e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyAfterTime: 8
+  destroyAfterTime: 12
 --- !u!114 &7951014343208967617
 MonoBehaviour:
   m_ObjectHideFlags: 0

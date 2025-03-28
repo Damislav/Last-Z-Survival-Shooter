@@ -188,6 +188,26 @@ PrefabInstance:
       propertyPath: boostType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5116241779637110838, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
+      propertyPath: boostDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5116241779637110838, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
+      propertyPath: boostPlayerSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5116241779637110838, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
+      propertyPath: boostPlayerShootSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5116241779637110838, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
+      propertyPath: boostPlayershootSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5116241779637110838, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
+      propertyPath: boostPlayerShotsPerSecond
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2781708356522533644, guid: a1bc8d8e76cc8ef4db3f6783f7048a1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
